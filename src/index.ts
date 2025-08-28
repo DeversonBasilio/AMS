@@ -7,7 +7,7 @@ import Router from './routes';
 import { errorHandler } from './middleware/errorHandling';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const app: Application = express();
 
 app.use(morgan('dev'));
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use('/api', Router);
+app.use(Router);
 app.use('/docs',
   swaggerUi.serve,
   swaggerUi.setup(undefined, {
