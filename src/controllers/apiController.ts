@@ -1,10 +1,10 @@
-import { Get,Route, Tags} from 'tsoa';
+import { Get, Route } from 'tsoa';
 
 interface ApiResponse {
   message: string;
 }
 
-@Route('api')
+@Route('/api')
 export default class ApiController {
 
   @Get('/')
