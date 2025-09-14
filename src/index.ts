@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 import * as dotenv from 'dotenv'
 import Router from './routes';
 import { errorHandler } from './middleware/errorHandling';
-const db = require('./database/models');
+import db from './database/models';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 const PORT = process.env.PORT || 3000;
