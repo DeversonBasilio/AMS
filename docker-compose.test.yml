@@ -1,26 +1,26 @@
 services:
-  server-dev:
+  server-test:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    container_name: server-dev
+      dockerfile: Dockerfile.test
+    container_name: server-test
     env_file:
-      - .env.dev
+      - .env.test
     volumes:
       - ./src:/app/src
     environment:
-      NODE_ENV: dev
+      NODE_ENV: test
     ports:
       - ${PORT}:3000
     depends_on:
-      db_dev:
+      db_test:
         condition: service_healthy
-  db_dev:
+  db_test:
     image: postgres:15
     restart: always
-    container_name: server-dev-db
+    container_name: server-test-db
     env_file:
-      - .env.dev
+      - .env.test
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -28,11 +28,11 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
-      - pgdata-dev:/var/lib/postgresql/data
+      - pgdata-test:/var/lib/postgresql/data
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB_NAME}" ]
       interval: 10s
       timeout: 5s
       retries: 5
 volumes:
-  pgdata-dev:
+  pgdata-test:
