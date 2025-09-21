@@ -7,7 +7,7 @@ module.exports = {
         CREATE TABLE IF NOT EXISTS ams.roles_users (
           roleId		UUID		    NOT NULL,
           userId		UUID		    NOT NULL,
-          createdAt  timestamp 	default NOW(),
+          createdAt  timestamp 	NOT NULL default NOW(),
           FOREIGN KEY (userId) 	REFERENCES ams.users(userId),
           FOREIGN KEY (roleId)	REFERENCES ams.roles(roleId)
         );`);
