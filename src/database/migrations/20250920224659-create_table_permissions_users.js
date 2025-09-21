@@ -7,7 +7,7 @@ module.exports = {
         CREATE TABLE IF NOT EXISTS ams.permissions_users (
           permissionId	UUID        NOT NULL,
           userId    		UUID        NOT NULL,
-          createdAt   	timestamp 	default NOW(),
+          createdAt   	timestamp 	NOT NULL default NOW(),
           FOREIGN KEY (userId) 		REFERENCES ams.users(userId),
           FOREIGN KEY (permissionId)	REFERENCES ams.permissions(permissionId)
         );`);
